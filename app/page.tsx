@@ -1,4 +1,6 @@
 import { Anticipation } from "@/components/Anticipation";
+import { FinalCta } from "@/components/FinalCta";
+import { Footer } from "@/components/Footer";
 import { Hero } from "@/components/Hero";
 import { Problem } from "@/components/Problem";
 import { Wordmark } from "@/components/Wordmark";
@@ -16,8 +18,10 @@ export default function Home() {
         <Hero />
         <Problem />
         <Anticipation />
-        {/* Waitlist → étape 4 · Footer → étape 5 · Analytics → étape 6 */}
+        <FinalCta />
       </main>
+
+      <Footer />
     </>
   );
 }

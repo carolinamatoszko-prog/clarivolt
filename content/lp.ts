@@ -110,3 +110,33 @@ export const anticipation = {
   ],
   closing: "Rendre votre parc résilient, au lieu de constater les dégâts.",
 } as const;
+
+/* ============================================================
+   Appel final — porte l'ancre #waitlist
+
+   Les deux CTA (hero et bas de page) pointent ici. À l'étape 4,
+   le formulaire prend place dans cette section : l'ancre reste
+   valable, rien à changer ailleurs.
+   ============================================================ */
+
+export const finalCta = {
+  title: "Savoir ce que votre parc perd en silence",
+  lead: "ClariVolt n'est pas encore ouvert. Les premiers inscrits sont ceux que nous appelons en premier.",
+  cta: { label: "Rejoindre la liste d'accès anticipé" },
+  note: "Nous contactons les premiers inscrits pour comprendre leur parc.",
+} as const;
+
+/* ============================================================
+   Pied de page
+   ============================================================ */
+
+export const footer = {
+  location: "ClariVolt, Lyon",
+  participation:
+    "Participation à Start-Up Lyon — French Tech Saint-Étienne — Lyon",
+  contact: {
+    label: "Contact",
+    name: "Carolina Matoszko",
+    href: "https://www.linkedin.com/in/carolina-matoszko-b52059a0/",
+  },
+} as const;
