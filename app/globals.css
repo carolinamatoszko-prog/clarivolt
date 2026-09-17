@@ -1,26 +1,93 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ============================================================
+   ClariVolt — Palette claire, B2B professionnel
+
+   Ancrée sur les couleurs extraites du logo :
+     teal   #4292a0  (segments de la jauge)   → brand-400
+     vert   #50ab72  (éclair, « volt »)       → accent-500
+     navy   #272c38  (fond du logo)           → ink-900
+
+   Ces deux couleurs de marque ne passent PAS le contraste
+   requis pour du texte sur blanc (3,59:1 et 2,83:1). Elles
+   servent donc de remplissage et d'accent décoratif ; le texte
+   et les CTA utilisent les niveaux 600/700, vérifiés.
+
+   Pas de dark mode : le brief impose une rupture avec les
+   dashboards techniques sombres.
+   ============================================================ */
+
+@theme {
+  /* ---- Brand : teal du logo, assombri pour le contraste ---- */
+  --color-brand-50: #f0f9fa;
+  --color-brand-100: #d9eff2;
+  --color-brand-200: #b4dfe6;
+  --color-brand-300: #84c8d4;
+  --color-brand-400: #4292a0; /* ← couleur exacte du logo */
+  --color-brand-500: #2f7d8c;
+  --color-brand-600: #246675; /* texte : 6,50:1 ✓ */
+  --color-brand-700: #1d5360; /* CTA : 8,54:1 ✓ */
+  --color-brand-800: #1a444f;
+  --color-brand-900: #17323a;
+
+  /* ---- Accent : vert du logo ---- */
+  --color-accent-50: #f1faf4;
+  --color-accent-100: #ddf2e4;
+  --color-accent-300: #a3d9b6;
+  --color-accent-500: #50ab72; /* ← couleur exacte du logo */
+  --color-accent-600: #3d8f5c;
+  --color-accent-700: #2f7249; /* texte : 5,79:1 ✓ */
+
+  /* ---- Signal : ambre — la perte silencieuse, l'alerte qui ne sonne pas ---- */
+  --color-signal-100: #fef3c7;
+  --color-signal-500: #f59e0b;
+  --color-signal-700: #b45309;
+
+  /* ---- Encre : dérivée du navy du logo ---- */
+  --color-ink-900: #272c38; /* ← fond du logo : titres */
+  --color-ink-700: #334155; /* corps de texte : 10,35:1 ✓ */
+  --color-ink-500: #64748b; /* secondaire : 4,76:1 ✓ */
+  --color-ink-300: #cbd5e1; /* bordures */
+  --color-ink-200: #e2e8f0; /* séparateurs */
+
+  /* ---- Surfaces ---- */
+  --color-surface: #ffffff;
+  --color-surface-subtle: #f8fafc;
+  --color-surface-muted: #f1f5f9;
+
+  /* ---- Typographie ---- */
+  --font-sans: var(--font-geist-sans), system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), monospace;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
+/* Base ------------------------------------------------------- */
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-surface);
+  color: var(--color-ink-700);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  color: var(--color-ink-900);
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+/* Visible au clavier, discret à la souris */
+:focus-visible {
+  outline: 2px solid var(--color-brand-600);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }
