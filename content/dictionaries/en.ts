@@ -16,10 +16,10 @@ export const en = {
 
     title: ["You can hear a water leak.", "You can't hear an energy loss."],
 
-    lead: "A drop in output from your solar panels makes no sound. It looks like an overcast sky, settles in over weeks, and only surfaces in the year-end figures.",
+    lead: "The drop in production of your solar panels is silent. It goes unnoticed for months. By the time you notice the performance gap, the accumulation of these micro-losses has already cost you dearly.",
 
     whyNow:
-      "And the value of a kWh keeps shifting: falling resale prices, scarce public tenders, a move towards self-consumption. Every kWh you fail to produce costs you more than it did yesterday.",
+      "In today's energy landscape, the demand for profitability is absolute: every missing kWh directly impacts your ROI.",
 
     cta: {
       label: "Join the early access list",
@@ -30,46 +30,44 @@ export const en = {
   },
 
   problem: {
-    title: "What eats into your output never triggers an alarm",
+    title: "Without precise analysis, underperformance can easily go unnoticed",
     items: [
       {
         term: "Soiling",
-        text: "Output falls slowly, without ever crossing a threshold. No sensor reports a dirty panel.",
+        text: "Production drops slowly, never drawing attention, until it causes more severe damage to the panels.",
       },
       {
-        term: "Drift",
-        text: "The gap builds over weeks, lost in weather variability. A day at −8% looks like a cloudy day.",
+        term: "Silent anomalies",
+        text: "Since your production naturally fluctuates with the weather, a new anomaly goes completely unnoticed, blending in with cloudy days.",
       },
       {
-        term: "Underperforming inverter",
-        text: "It runs, it does not fail. It simply produces less than its neighbours.",
+        term: "Fatigued inverter",
+        text: "It doesn't necessarily fail or send a fault signal. It remains connected, but simply produces less than its neighbours.",
       },
     ],
     closing:
-      "No threshold crossed, no alert — you find out once they have already cost you.",
+      "Invisible, these losses accumulate and continuously penalise your profitability.",
   },
 
   anticipation: {
-    title: "Most of these losses announce themselves",
-    lead: "Causes are visible before consequences. A weather event is not only a risk: it is a window to act.",
+    title: "From detection to anticipation: regain control",
+    lead: "Identifying your invisible losses is only the first step. By leveraging meteorological models, you turn weather hazards into actionable windows to make your portfolio truly resilient.",
     items: [
       {
-        event: "Dust episode, sand-laden wind",
-        action:
-          "Schedule a clean before the loss sets in, rather than discovering it in the monthly reading.",
+        term: "Isolate silent anomalies",
+        text: "Cross-analysing data identifies the root cause of a drop in yield. You can intervene precisely before accumulated losses heavily impact your profitability.",
       },
       {
-        event: "Extreme heat forecast",
-        action:
-          "Anticipate the temperature-driven drop in yield and the ventilation of technical rooms.",
+        term: "Protect equipment from extreme heat",
+        text: "Solar panel efficiency drops under intense heat. Anticipating this allows you to act: you pre-ventilate technical rooms to prevent inverters from throttling, and adjust cleaning schedules to avoid thermal shock.",
       },
       {
-        event: "Storm, hail, debris",
-        action:
-          "Focus the inspection on exposed rows: broken modules, foliage, gravel — instead of walking the whole site.",
+        term: "Target inspections after severe weather",
+        text: "Storms, hail, strong winds — stop inspecting your site blindly. The model pinpoints the exact areas that haven't returned to their theoretical production levels.",
       },
     ],
-    closing: "Make your portfolio resilient, instead of recording the damage.",
+    closing:
+      "Every event is anticipated. Your solar plant becomes a robust, resilient asset, operating at its full potential.",
   },
 
   finalCta: {

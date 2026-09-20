@@ -23,15 +23,15 @@ const hero = {
    * (salissure / dérive / onduleur) appartient au bloc Problème.
    * Éviter de dire deux fois la même chose à deux endroits.
    */
-  lead: "La baisse de production de vos panneaux solaires ne fait pas de bruit. Elle se confond avec un ciel couvert, s'installe sur des semaines, et n'apparaît qu'au bilan.",
+  lead: "La baisse de production de vos panneaux solaires ne fait pas de bruit. Elle passe inaperçue pendant des mois. Le jour où vous constatez l'écart de rendement, l'accumulation de ces micro-pertes a déjà coûté cher.",
 
   /**
    * Le « pourquoi maintenant » : l'économie du kWh.
-   * Formulé qualitativement, sans chiffre — prix de revente en
-   * baisse, appels d'offres rares, bascule vers l'autoconsommation.
+   * Formulé qualitativement, sans chiffre — la pression sur la
+   * rentabilité, pas un pourcentage inventé.
    */
   whyNow:
-    "Et la valeur d'un kWh se déplace : prix de revente en baisse, appels d'offres rares, bascule vers l'autoconsommation. Chaque kWh que vous ne produisez pas vous coûte plus cher qu'hier.",
+    "Dans le contexte énergétique actuel, l'exigence de rentabilité est maximale : chaque kWh manquant dégrade directement votre retour sur investissement.",
 
   cta: {
     label: "Rejoindre la liste d'accès anticipé",
@@ -47,58 +47,61 @@ const hero = {
    ============================================================ */
 
 const problem = {
-  title: "Ce qui ronge votre production ne déclenche aucune alarme",
+  title: "Sans analyse fine, ces sous-performances peuvent passer inaperçues",
   items: [
     {
       term: "Salissure",
-      text: "La production baisse lentement, sans jamais franchir de seuil. Aucun capteur ne signale une vitre sale.",
+      text: "La production baisse lentement, sans jamais attirer l'attention, jusqu'à provoquer des dégâts plus importants sur les panneaux.",
     },
     {
-      term: "Dérive",
-      text: "L'écart s'installe sur des semaines, noyé dans la variabilité météo. Une journée à −8 % ressemble à une journée nuageuse.",
+      term: "Anomalies silencieuses",
+      text: "Parce que votre production varie naturellement avec la météo, l'apparition d'une nouvelle anomalie passe totalement inaperçue. Elle se fond simplement dans les jours nuageux.",
     },
     {
-      term: "Onduleur sous-performant",
-      text: "Il fonctionne, il ne tombe pas en panne. Il produit simplement moins que ses voisins.",
+      term: "Onduleur fatigué",
+      text: "Il ne tombe pas nécessairement en panne et n'envoie aucun signal de défaut. Il reste connecté, mais produit tout simplement moins que ses voisins.",
     },
   ],
   closing:
-    "Aucun seuil franchi, aucune alerte — vous les découvrez quand elles ont déjà coûté.",
+    "Invisibles, ces pertes s'accumulent et pénalisent votre rentabilité en continu.",
 };
 
 /* ============================================================
    Bloc « Anticipation » — le goût de la prédiction (prospectif)
 
    Logique : les causes sont visibles avant les conséquences.
-   Un épisode de poussière précède la salissure ; la canicule
-   précède la baisse de rendement ; la tempête précède les casses.
+   Le bloc précédent constate la perte ; celui-ci montre la
+   fenêtre d'action qui la précède.
 
    ⚠️ Aucune capacité décrite ici n'existe encore. C'est
    précisément ce que le fake door teste. Le CTA reste une liste
    d'attente — aucune promesse de livraison.
+
+   Forme `term` / `text`, identique au bloc Problème : chaque
+   entrée est un levier, pas un événement météo. L'ancienne forme
+   `event` → `action` portait une flèche « cause vers réponse »
+   qui n'a plus de sens avec ce texte.
    ============================================================ */
 
 const anticipation = {
-  title: "La plupart de ces pertes s'annoncent",
-  lead: "Les causes sont visibles avant les conséquences. Un événement météo n'est pas seulement un risque : c'est une fenêtre pour agir.",
+  title: "De la détection à l'anticipation : reprenez le contrôle",
+  lead: "Identifier vos pertes invisibles est une première étape. En s'appuyant sur des modèles météorologiques, vous transformez les aléas climatiques en fenêtres d'action pour rendre votre parc véritablement résilient.",
   items: [
     {
-      event: "Épisode de poussière, vent de sable",
-      action:
-        "Planifier un nettoyage avant que la perte ne s'installe, plutôt que de la découvrir au relevé mensuel.",
+      term: "Isoler les anomalies silencieuses",
+      text: "L'analyse croisée des données permet d'identifier l'origine d'une baisse de rendement. Vous intervenez de manière ciblée, avant que l'accumulation de ces pertes n'impacte lourdement votre rentabilité.",
     },
     {
-      event: "Chaleur extrême annoncée",
-      action:
-        "Anticiper la baisse de rendement liée à la température et la ventilation des locaux techniques.",
+      term: "Protéger l'équipement des chaleurs extrêmes",
+      text: "La perte de rendement des panneaux au soleil est connue. L'anticiper permet d'agir : vous pré-ventilez vos locaux techniques pour éviter que les onduleurs ne se brident, et vous ajustez vos plannings de nettoyage pour écarter tout risque de choc thermique.",
     },
     {
-      event: "Tempête, grêle, débris",
-      action:
-        "Cibler l'inspection sur les tables exposées : modules cassés, feuillages, gravillons — au lieu de tout parcourir.",
+      term: "Cibler l'inspection après une intempérie",
+      text: "Tempête, grêle, vents violents : n'inspectez plus votre site à l'aveugle. Le modèle indique les zones précises qui n'ont pas retrouvé leur niveau de production théorique.",
     },
   ],
-  closing: "Rendre votre parc résilient, au lieu de constater les dégâts.",
+  closing:
+    "Chaque événement est anticipé. Votre centrale devient un actif robuste, résilient et exploité à son plein potentiel.",
 };
 
 /* ============================================================
