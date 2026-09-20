@@ -50,24 +50,20 @@ export const en = {
   },
 
   anticipation: {
-    title: "From detection to anticipation: regain control",
-    lead: "Identifying your invisible losses is only the first step. By leveraging meteorological models, you turn weather hazards into actionable windows to make your portfolio truly resilient.",
+    eyebrow: "Vision",
+    title: "Your data, deeply analysed, to optimise your production",
+    lead: "Our vision: an in-depth analysis of your production data, combined with weather modelling, to turn uncertainty into a resilience strategy.",
     items: [
       {
-        term: "Isolate silent anomalies",
-        text: "Cross-analysing data identifies the root cause of a drop in yield. You can intervene precisely before accumulated losses heavily impact your profitability.",
+        term: "Detect and understand silent losses",
+        text: "Rather than facing unexplained drops in production, our approach aims to analyse in depth the history and data flows of your portfolio. By cross-referencing performance variables, the goal is to surface invisible patterns to understand the exact origin of malfunctions and anticipate potential issues before they impact profitability.",
       },
       {
-        term: "Protect equipment from extreme heat",
-        text: "Solar panel efficiency drops under intense heat. Anticipating this allows you to act: you pre-ventilate technical rooms to prevent inverters from throttling, and adjust cleaning schedules to avoid thermal shock.",
-      },
-      {
-        term: "Target inspections after severe weather",
-        text: "Storms, hail, strong winds — stop inspecting your site blindly. The model pinpoints the exact areas that haven't returned to their theoretical production levels.",
+        term: "Anticipate climate impact",
+        text: "Faced with climate disruption, asset managers need visibility. Our approach aims to integrate weather models to simulate and anticipate the impact of hazards on your installations — moving from reactive, blind maintenance to proactive planning of interventions.",
       },
     ],
-    closing:
-      "Every event is anticipated. Your solar plant becomes a robust, resilient asset, operating at its full potential.",
+    closing: "This is the direction in which we're building ClariVolt.",
   },
 
   finalCta: {

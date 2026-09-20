@@ -1,5 +1,5 @@
 import { Container } from "@/components/ui/Container";
-import { CtaLink } from "@/components/ui";
+import { CtaLink, Eyebrow } from "@/components/ui";
 import type { Dictionary } from "@/content/dictionaries";
 
 export function Hero({ dict }: { dict: Dictionary["hero"] }) {
@@ -18,13 +18,7 @@ export function Hero({ dict }: { dict: Dictionary["hero"] }) {
       {/* Padding asymétrique : peu en haut pour que l'accroche soit
           lisible dès l'ouverture, de l'air en bas pour respirer. */}
       <Container padding="hero" className="relative">
-        <p className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-3 py-1 text-sm font-medium text-brand-700">
-          <span
-            aria-hidden
-            className="h-1.5 w-1.5 rounded-full bg-accent-500"
-          />
-          {dict.eyebrow}
-        </p>
+        <Eyebrow>{dict.eyebrow}</Eyebrow>
 
         <h1 className="mt-6 text-4xl font-bold sm:text-6xl">
           {dict.title.map((line, i) => (

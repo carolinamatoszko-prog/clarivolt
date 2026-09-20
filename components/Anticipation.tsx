@@ -1,5 +1,5 @@
 import { Container } from "@/components/ui/Container";
-import { Bullet } from "@/components/ui";
+import { Bullet, Eyebrow } from "@/components/ui";
 import type { Dictionary } from "@/content/dictionaries";
 
 /**
@@ -17,7 +17,9 @@ export function Anticipation({ dict }: { dict: Dictionary["anticipation"] }) {
   return (
     <section className="border-b border-ink-200 bg-surface">
       <Container>
-        <h2 className="text-3xl font-bold sm:text-4xl">{dict.title}</h2>
+        <Eyebrow>{dict.eyebrow}</Eyebrow>
+
+        <h2 className="mt-6 text-3xl font-bold sm:text-4xl">{dict.title}</h2>
         <p className="mt-4 max-w-2xl text-lg text-ink-700">{dict.lead}</p>
 
         <dl className="mt-10 space-y-6">

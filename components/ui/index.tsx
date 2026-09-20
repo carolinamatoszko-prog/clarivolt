@@ -77,6 +77,22 @@ export function CtaButton({ children, ...props }: ComponentProps<"button">) {
   );
 }
 
+/* ── Eyebrow ── petite étiquette au-dessus d'un titre ────────── */
+
+/**
+ * Extraite du Hero à l'identique, pour que la section Vision porte
+ * la même étiquette sans recopier ses classes. Recopier, c'était
+ * le défaut qui avait désynchronisé l'en-tête dupliqué.
+ */
+export function Eyebrow({ children }: { children: ReactNode }) {
+  return (
+    <p className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-3 py-1 text-sm font-medium text-brand-700">
+      <span aria-hidden className="h-1.5 w-1.5 rounded-full bg-accent-500" />
+      {children}
+    </p>
+  );
+}
+
 /* ── Filet d'accent ── marque la bascule vers l'action ───────── */
 
 export function AccentRule() {

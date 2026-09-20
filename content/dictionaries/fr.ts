@@ -67,41 +67,33 @@ const problem = {
 };
 
 /* ============================================================
-   Bloc « Anticipation » — le goût de la prédiction (prospectif)
+   Bloc « Vision » — ce vers quoi le produit est construit
 
-   Logique : les causes sont visibles avant les conséquences.
-   Le bloc précédent constate la perte ; celui-ci montre la
-   fenêtre d'action qui la précède.
+   ⚠️ Aucune capacité décrite ici n'existe encore, et le texte le
+   dit lui-même : « notre approche vise à », « l'objectif est de ».
+   C'est précisément ce que le fake door teste. Le CTA reste une
+   liste d'attente — aucune promesse de livraison.
 
-   ⚠️ Aucune capacité décrite ici n'existe encore. C'est
-   précisément ce que le fake door teste. Le CTA reste une liste
-   d'attente — aucune promesse de livraison.
-
-   Forme `term` / `text`, identique au bloc Problème : chaque
-   entrée est un levier, pas un événement météo. L'ancienne forme
-   `event` → `action` portait une flèche « cause vers réponse »
-   qui n'a plus de sens avec ce texte.
+   Deux entrées seulement : détecter, puis anticiper. Les cartes
+   sont empilées pleine largeur, comme le bloc Problème.
    ============================================================ */
 
 const anticipation = {
-  title: "De la détection à l'anticipation : reprenez le contrôle",
-  lead: "Identifier vos pertes invisibles est une première étape. En s'appuyant sur des modèles météorologiques, vous transformez les aléas climatiques en fenêtres d'action pour rendre votre parc véritablement résilient.",
+  eyebrow: "Vision",
+  title:
+    "Votre donnée, analysée en profondeur, pour optimiser votre production",
+  lead: "Notre vision : une analyse approfondie de vos données de production, combinée à la modélisation météorologique, pour transformer l'incertitude en stratégie de résilience.",
   items: [
     {
-      term: "Isoler les anomalies silencieuses",
-      text: "L'analyse croisée des données permet d'identifier l'origine d'une baisse de rendement. Vous intervenez de manière ciblée, avant que l'accumulation de ces pertes n'impacte lourdement votre rentabilité.",
+      term: "Détecter et comprendre les pertes silencieuses",
+      text: "Plutôt que de subir des baisses de production inexpliquées, notre approche vise à analyser en profondeur l'historique et les flux de données de votre parc. En croisant les variables de performance, l'objectif est de mettre en lumière les schémas invisibles pour comprendre l'origine exacte des dysfonctionnements et anticiper les problèmes potentiels avant qu'ils n'impactent la rentabilité.",
     },
     {
-      term: "Protéger l'équipement des chaleurs extrêmes",
-      text: "La perte de rendement des panneaux au soleil est connue. L'anticiper permet d'agir : vous pré-ventilez vos locaux techniques pour éviter que les onduleurs ne se brident, et vous ajustez vos plannings de nettoyage pour écarter tout risque de choc thermique.",
-    },
-    {
-      term: "Cibler l'inspection après une intempérie",
-      text: "Tempête, grêle, vents violents : n'inspectez plus votre site à l'aveugle. Le modèle indique les zones précises qui n'ont pas retrouvé leur niveau de production théorique.",
+      term: "Anticiper l'impact climatique",
+      text: "Face aux dérèglements climatiques, les gestionnaires d'actifs ont besoin de visibilité. Notre approche vise à intégrer les modèles météorologiques pour simuler et anticiper l'impact des aléas sur vos installations — passer d'une maintenance réactive et aveugle à une planification proactive des interventions.",
     },
   ],
-  closing:
-    "Chaque événement est anticipé. Votre centrale devient un actif robuste, résilient et exploité à son plein potentiel.",
+  closing: "C'est la direction vers laquelle nous construisons ClariVolt.",
 };
 
 /* ============================================================
