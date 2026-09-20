@@ -32,6 +32,9 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+# Exception : le modèle ne contient que des NOMS de variables,
+# jamais de valeur. Il doit être versionné.
+!.env.example
 
 # vercel
 .vercel

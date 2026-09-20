@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ClariVolt — landing page
 
-## Getting Started
+Page d'inscription à la liste d'accès anticipé.
+Cible : asset managers de parcs photovoltaïques, France.
 
-First, run the development server:
+En ligne : https://clarivolt.vercel.app
+
+## Stack
+
+| | |
+|---|---|
+| Framework | Next.js 16 (App Router) |
+| UI | React 19, Tailwind CSS 4 |
+| Hébergement | Vercel — déploiement auto sur push `main` |
+| Capture d'email | Formulaire natif → Route Handler → Brevo |
+
+## Démarrer en local
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Variables d'environnement
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Les noms sont listés dans [`.env.example`](.env.example). **Aucune valeur
+n'est versionnée** — ni dans ce dépôt, ni dans aucun fichier suivi par git.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Variable | Rôle | Où la trouver |
+|---|---|---|
+| `BREVO_API_KEY` | Authentifie l'appel à l'API Brevo | Brevo → Settings → SMTP & API → API Keys |
+| `BREVO_LIST_ID` | Liste qui reçoit les inscrits | Brevo → Contacts → Lists (id dans l'URL) |
 
-## Learn More
+### En production
+Vercel → Project Settings → Environment Variables.
+Les cocher pour **Production, Preview et Development** : sans Preview, les
+déploiements de branche échouent ; sans Development, `vercel env pull` ne
+récupère rien.
 
-To learn more about Next.js, take a look at the following resources:
+### En local
+```bash
+vercel env pull .env.local
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Ou manuellement : `cp .env.example .env.local`, puis remplir.
+`.env.local` est ignoré par git.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+> `BREVO_API_KEY` est une clé serveur. Ne jamais la préfixer
+> `NEXT_PUBLIC_` : ce préfixe l'exposerait dans le navigateur, où
+> n'importe qui pourrait la lire et écrire dans la liste de contacts.
 
-## Deploy on Vercel
+## Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+app/
+  layout.tsx        langue, métadonnées, polices
+  globals.css       palette (tokens Tailwind 4, @theme)
+  page.tsx          composition de la page
+components/         Hero, Problem, Anticipation, FinalCta, Footer, Wordmark
+content/lp.ts       TOUT le texte de la page
+public/             logo
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### Modifier le texte
+
+Tout le contenu vit dans [`content/lp.ts`](content/lp.ts), hors des
+composants. Tester une nouvelle accroche = modifier ce fichier.
+
+Règle : **aucun chiffre non vérifié.** Un nombre non validé s'écrit
+`[CHIFFRE À VALIDER]`.
+
+### Modifier les couleurs
+
+Les tokens sont définis dans le bloc `@theme` de `app/globals.css`, ancrés
+sur les couleurs du logo. Les composants n'utilisent que des noms
+sémantiques (`bg-brand-700`), jamais d'hexadécimal — changer un token
+suffit à repeindre la page.
+
+Les couleurs brutes du logo (`brand-400`, `accent-500`) ne passent pas le
+contraste requis pour du texte sur blanc : elles restent décoratives, le
+texte utilise les niveaux 600/700.
