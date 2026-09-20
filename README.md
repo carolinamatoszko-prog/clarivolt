@@ -140,6 +140,35 @@ L'adresse postale est volontairement absente : le RGPD exige une identité
 et un moyen de contact, pas le domicile d'une personne physique sur un
 site ouvert.
 
+## Sécurité
+
+Les en-têtes sont dans [`next.config.ts`](next.config.ts).
+
+**Pas de CSP couvrant les scripts, et c'est délibéré.** Sans nonces, Next
+a besoin de `'unsafe-inline'`, ce qui ne protège quasiment pas du XSS tout
+en donnant l'illusion du contraire. Les nonces imposeraient un `proxy.ts`
+et feraient perdre le prérendu statique des six pages. Les directives
+retenues (`frame-ancestors`, `base-uri`, `form-action`, `object-src`) ne
+touchent pas aux scripts : protection réelle, aucun risque de casse.
+
+### Ce qui protège la clé Brevo
+- `app/actions.ts` porte `"use server"` : le code n'existe pas côté client
+- jamais de préfixe `NEXT_PUBLIC_`
+- vérifié : la clé est absente de `.next/static/` et du HTML prérendu
+
+### Règles à ne pas casser
+- **Valider `lang` avant tout `redirect()`** — sans `hasLocale`, l'action
+  deviendrait une redirection ouverte
+- **Ne jamais renvoyer au navigateur une erreur brute de l'API Brevo** —
+  elle révélerait la structure du compte. L'action renvoie des clés
+- **Ne jamais répondre « déjà inscrit »** — cela permettrait de tester
+  quelles adresses figurent dans la liste
+
+### Connu et accepté : pas de double opt-in
+N'importe qui peut inscrire l'adresse d'un tiers. Évalué puis écarté pour
+l'instant — voir `BRIEF.md` §18. À reprendre quand un expéditeur sur le
+domaine existera.
+
 ## Structure
 
 ```
