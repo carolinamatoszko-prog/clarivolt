@@ -49,6 +49,27 @@ Ou manuellement : `cp .env.example .env.local`, puis remplir.
 > `NEXT_PUBLIC_` : ce préfixe l'exposerait dans le navigateur, où
 > n'importe qui pourrait la lire et écrire dans la liste de contacts.
 
+## Mesurer la conversion
+
+Le plan Hobby de Vercel **n'ouvre pas les événements personnalisés**
+(`track()` est réservé aux plans Pro et Enterprise). Une inscription
+réussie redirige donc vers `/merci`, dont la page vue est la seule façon
+de calculer la conversion :
+
+```
+taux de conversion = pages vues /merci ÷ pages vues /
+```
+
+Les deux chiffres se lisent dans Vercel → Project → Analytics.
+
+`/merci` est en `noindex` : une visite venue d'un moteur de recherche
+fausserait le taux. Le piège à robots du formulaire abandonne en silence,
+sans rediriger, pour la même raison.
+
+> Si le projet passe un jour en plan Pro, `track('Signup')` permettrait de
+> mesurer sans page intermédiaire — mais la page de confirmation reste
+> une meilleure expérience, et le calcul ci-dessus continue de marcher.
+
 ## RGPD
 
 Le formulaire collecte une seule donnée : l'adresse e-mail.
@@ -58,14 +79,15 @@ Le formulaire collecte une seule donnée : l'adresse e-mail.
 | Responsable du traitement | Carolina Matoszko, à titre individuel (pas encore de société, donc pas de SIREN) |
 | Base légale | consentement, case jamais pré-cochée |
 | Sous-traitant | Brevo (Sendinblue SAS, RCS Paris 498 019 298), hébergement UE |
+| Mesure d'audience | Vercel Web Analytics — sans cookie, empreinte jetée après 24 h |
 | Page | [`/confidentialite`](app/confidentialite/page.tsx), `noindex` |
 
 Le texte vit dans [`content/privacy.ts`](content/privacy.ts).
 
 **À mettre à jour :**
 - **à la création de la société** — raison sociale, SIREN, adresse
-- **si une mesure d'audience est ajoutée** — la section « Cookies »
-  affirme aujourd'hui qu'aucun cookie de suivi n'est déposé
+- **si l'outil de mesure change** — la section « Mesure d'audience »
+  décrit précisément ce que Vercel enregistre
 
 L'adresse postale est volontairement absente : le RGPD exige une identité
 et un moyen de contact, pas le domicile d'une personne physique sur un
@@ -82,6 +104,7 @@ app/
   waitlist-state.ts état du formulaire — hors du fichier « use server »,
                     qui ne peut exporter que des fonctions async
   confidentialite/  politique de confidentialité
+  merci/            confirmation — sa page vue mesure la conversion
 components/         Hero, Problem, Anticipation, FinalCta, WaitlistForm,
                     Footer, Wordmark
 content/lp.ts       TOUT le texte de la page
