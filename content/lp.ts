@@ -16,14 +16,14 @@ export const hero = {
   eyebrow: "Asset managers de parcs photovoltaïques",
 
   /** Une entrée par ligne — le saut de ligne est intentionnel. */
-  title: ["Une fuite d'eau, on l'entend.", "Une perte de production, non."],
+  title: ["Une fuite d'eau, on l'entend.", "Une perte d'énergie, non."],
 
   /**
    * Le Hero pose le phénomène, il n'énumère pas : l'énumération
    * (salissure / dérive / onduleur) appartient au bloc Problème.
    * Éviter de dire deux fois la même chose à deux endroits.
    */
-  lead: "Une baisse de production ne fait pas de bruit. Elle se confond avec un ciel couvert, s'installe sur des semaines, et n'apparaît qu'au bilan.",
+  lead: "La baisse de production de vos panneaux solaires ne fait pas de bruit. Elle se confond avec un ciel couvert, s'installe sur des semaines, et n'apparaît qu'au bilan.",
 
   /**
    * Le « pourquoi maintenant » : l'économie du kWh.
@@ -121,9 +121,14 @@ export const anticipation = {
 
 export const finalCta = {
   title: "Savoir ce que votre parc perd en silence",
-  lead: "ClariVolt n'est pas encore ouvert. Les premiers inscrits sont ceux que nous appelons en premier.",
+  lead: "Nous contactons les premiers inscrits pour comprendre leur parc.",
   cta: { label: "Rejoindre la liste d'accès anticipé" },
-  note: "Nous contactons les premiers inscrits pour comprendre leur parc.",
+  /**
+   * `note` retirée : elle portait exactement la phrase devenue le
+   * `lead`, qui serait donc apparue deux fois dans le même bloc.
+   * Pour la rétablir, ajouter la clé ici et la ligne correspondante
+   * dans components/FinalCta.tsx.
+   */
 } as const;
 
 /**

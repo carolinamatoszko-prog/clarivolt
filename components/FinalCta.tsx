@@ -22,7 +22,6 @@ export function FinalCta() {
 
         <div className="mt-8">
           <WaitlistForm />
-          <p className="mt-4 text-sm text-ink-500">{finalCta.note}</p>
         </div>
       </div>
     </section>
