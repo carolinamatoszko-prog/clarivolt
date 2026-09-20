@@ -26,8 +26,8 @@ export function Anticipation({ dict }: { dict: Dictionary["anticipation"] }) {
               key={item.term}
               className="rounded-xl border border-ink-200 bg-surface-subtle p-5"
             >
-              <dt className="flex items-center gap-2.5 font-semibold text-ink-900">
-                <Bullet />
+              <dt className="flex items-center gap-2.5 font-semibold text-accent-700">
+                <Bullet tone="accent" />
                 {item.term}
               </dt>
               <dd className="mt-2 pl-[1.125rem] text-ink-700">{item.text}</dd>

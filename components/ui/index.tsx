@@ -85,11 +85,31 @@ export function AccentRule() {
 
 /* ── Puce de liste ── utilisée par Problème et Anticipation ──── */
 
-export function Bullet({ className = "" }: { className?: string }) {
+/**
+ * `tone` suit le code couleur de la palette :
+ *   signal (ambre) = la perte silencieuse, ce qui vous échappe
+ *   accent (vert)  = ce que vous en faites
+ *
+ * C'est un paramètre et non une classe passée par `className` :
+ * deux classes `bg-*` sur le même élément laisseraient l'ordre du
+ * CSS généré décider laquelle gagne.
+ */
+const bulletTones = {
+  signal: "bg-signal-500",
+  accent: "bg-accent-500",
+} as const;
+
+export function Bullet({
+  tone = "signal",
+  className = "",
+}: {
+  tone?: keyof typeof bulletTones;
+  className?: string;
+}) {
   return (
     <span
       aria-hidden
-      className={`h-2 w-2 shrink-0 rounded-full bg-signal-500${
+      className={`h-2 w-2 shrink-0 rounded-full ${bulletTones[tone]}${
         className ? ` ${className}` : ""
       }`}
     />
