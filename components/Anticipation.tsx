@@ -26,13 +26,13 @@ export function Anticipation({ dict }: { dict: Dictionary["anticipation"] }) {
           {dict.items.map((item) => (
             <div
               key={item.term}
-              className="rounded-xl border border-ink-200 bg-surface-subtle p-5"
+              className="grid gap-2 rounded-xl border border-ink-200 bg-surface-subtle p-5 sm:grid-cols-[1fr_1.9fr] sm:gap-6"
             >
-              <dt className="flex items-center gap-2.5 font-semibold text-accent-700">
-                <Bullet tone="accent" />
+              <dt className="flex items-start gap-2.5 font-semibold text-accent-700">
+                <Bullet tone="accent" className="mt-[0.4rem]" />
                 {item.term}
               </dt>
-              <dd className="mt-2 pl-[1.125rem] text-ink-700">{item.text}</dd>
+              <dd className="pl-[1.125rem] text-ink-700 sm:pl-0">{item.text}</dd>
             </div>
           ))}
         </dl>
