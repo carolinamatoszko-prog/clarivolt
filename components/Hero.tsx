@@ -1,6 +1,6 @@
-import { hero } from "@/content/lp";
+import type { Dictionary } from "@/content/dictionaries";
 
-export function Hero() {
+export function Hero({ dict }: { dict: Dictionary["hero"] }) {
   return (
     <section className="relative overflow-hidden border-b border-ink-200 bg-surface">
       {/* Halo décoratif — couleurs du logo, niveaux clairs */}
@@ -21,13 +21,13 @@ export function Hero() {
             aria-hidden
             className="h-1.5 w-1.5 rounded-full bg-accent-500"
           />
-          {hero.eyebrow}
+          {dict.eyebrow}
         </p>
 
         <h1 className="mt-6 text-4xl font-bold sm:text-6xl">
-          {hero.title.map((line, i) => (
+          {dict.title.map((line, i) => (
             <span key={line} className="block">
-              {i === hero.title.length - 1 ? (
+              {i === dict.title.length - 1 ? (
                 <span className="text-brand-700">{line}</span>
               ) : (
                 line
@@ -37,21 +37,21 @@ export function Hero() {
         </h1>
 
         <p className="mt-6 max-w-2xl text-lg text-ink-700 sm:text-xl">
-          {hero.lead}
+          {dict.lead}
         </p>
 
         <p className="mt-5 max-w-2xl border-l-2 border-signal-500 pl-4 text-base text-ink-700">
-          {hero.whyNow}
+          {dict.whyNow}
         </p>
 
         <div className="mt-9 flex flex-col items-start gap-3">
           <a
-            href={hero.cta.href}
+            href={dict.cta.href}
             className="rounded-lg bg-brand-700 px-6 py-3 font-medium text-white transition-colors hover:bg-brand-800"
           >
-            {hero.cta.label}
+            {dict.cta.label}
           </a>
-          <p className="text-sm text-ink-500">{hero.ctaNote}</p>
+          <p className="text-sm text-ink-500">{dict.ctaNote}</p>
         </div>
       </div>
     </section>

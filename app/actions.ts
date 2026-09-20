@@ -1,6 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { defaultLocale, hasLocale } from "@/content/locales";
 import type { WaitlistState } from "./waitlist-state";
 
 /**
@@ -16,10 +17,10 @@ import type { WaitlistState } from "./waitlist-state";
  * l'API n'est renvoyée telle quelle au navigateur : elle pourrait
  * révéler la structure du compte.
  *
- * En cas de succès, on redirige vers /merci plutôt que d'afficher
+ * En cas de succès, on redirige vers /{lang}/merci plutôt que d'afficher
  * un message sur place : cette page vue est la seule façon de
  * mesurer la conversion sur le plan Hobby, qui n'ouvre pas les
- * événements personnalisés. Voir `thanks` dans content/lp.ts.
+ * événements personnalisés. Voir `thanks` dans les dictionnaires.
  */
 
 /** Validation volontairement simple : un seul @, pas d'espace, un point après. */
@@ -79,32 +80,32 @@ export async function joinWaitlist(
   // pour ne pas gonfler le compteur de /merci sur lequel repose la
   // mesure de conversion.
   if (formData.get("website")) {
-    return { status: "idle", message: "" };
+    return { status: "idle", error: null };
   }
+
+  // La langue vient d'un champ caché. Une action est un point d'entrée
+  // non fiable : on ne redirige que vers une langue connue, sinon
+  // n'importe qui pourrait forcer une destination arbitraire.
+  const submitted = String(formData.get("lang") ?? "");
+  const lang = hasLocale(submitted) ? submitted : defaultLocale;
 
   const email = String(formData.get("email") ?? "").trim();
 
   if (!looksLikeEmail(email)) {
-    return { status: "error", message: "Cette adresse e-mail semble invalide." };
+    return { status: "error", error: "invalidEmail" };
   }
 
   if (!formData.get("consent")) {
-    return {
-      status: "error",
-      message: "Merci de cocher la case de consentement pour continuer.",
-    };
+    return { status: "error", error: "consentRequired" };
   }
 
   const saved = await addContactToBrevo(email);
 
   if (!saved) {
-    return {
-      status: "error",
-      message: "Inscription momentanément indisponible. Réessayez plus tard.",
-    };
+    return { status: "error", error: "unavailable" };
   }
 
   // Hors du try/catch : `redirect` lance une exception de contrôle de
   // flux qu'un catch avalerait, et personne ne serait redirigé.
-  redirect("/merci");
+  redirect(`/${lang}/merci`);
 }

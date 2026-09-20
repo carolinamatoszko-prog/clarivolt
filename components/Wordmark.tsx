@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { brand } from "@/content/lp";
+import { brand } from "@/content/brand";
 
 /**
  * Logotype : la marque (jauge + éclair) + le nom en texte.

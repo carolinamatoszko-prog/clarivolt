@@ -1,8 +1,25 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
 import { Footer } from "@/components/Footer";
-import { Wordmark } from "@/components/Wordmark";
-import { privacy, privacyContactEmail } from "@/content/privacy";
+import { SiteHeader } from "@/components/SiteHeader";
+import { privacyContactEmail } from "@/content/contact";
+import { getDictionary } from "@/content/dictionaries";
+import { hasLocale } from "@/content/locales";
+
+export async function generateMetadata({
+  params,
+}: PageProps<"/[lang]/confidentialite">): Promise<Metadata> {
+  const { lang } = await params;
+  if (!hasLocale(lang)) return {};
+  const dict = await getDictionary(lang);
+
+  return {
+    title: `${dict.privacy.title} — ClariVolt`,
+    description: dict.privacy.intro,
+    robots: { index: false },
+  };
+}
 
 /**
  * Rend l'adresse de contact cliquable partout où elle apparaît.
@@ -29,23 +46,18 @@ function withMailtoLink(text: string) {
   );
 }
 
-export const metadata: Metadata = {
-  title: `${privacy.title} — ClariVolt`,
-  description:
-    "Comment les données du formulaire d'inscription ClariVolt sont traitées.",
-  robots: { index: false },
-};
+export default async function Confidentialite({
+  params,
+}: PageProps<"/[lang]/confidentialite">) {
+  const { lang } = await params;
+  if (!hasLocale(lang)) notFound();
 
-export default function Confidentialite() {
+  const dict = await getDictionary(lang);
+  const privacy = dict.privacy;
+
   return (
     <>
-      <header className="border-b border-ink-200 bg-surface">
-        <div className="mx-auto flex w-full max-w-3xl items-center px-4 py-4 sm:px-6">
-          <Link href="/" aria-label="ClariVolt — accueil">
-            <Wordmark />
-          </Link>
-        </div>
-      </header>
+      <SiteHeader lang={lang} />
 
       <main className="flex-1">
         <div className="mx-auto w-full max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
@@ -66,9 +78,16 @@ export default function Confidentialite() {
             ))}
           </div>
 
+          {/* Vide en français : cette version-là EST le texte de référence. */}
+          {privacy.languageNote && (
+            <p className="mt-10 border-l-2 border-ink-300 pl-4 text-sm text-ink-500">
+              {privacy.languageNote}
+            </p>
+          )}
+
           <p className="mt-12">
             <Link
-              href="/"
+              href={`/${lang}`}
               className="font-medium text-brand-700 underline underline-offset-2 hover:text-brand-800"
             >
               {privacy.back}
@@ -77,7 +96,7 @@ export default function Confidentialite() {
         </div>
       </main>
 
-      <Footer />
+      <Footer dict={dict.footer} lang={lang} />
     </>
   );
 }

@@ -1,13 +1,13 @@
-import { problem } from "@/content/lp";
+import type { Dictionary } from "@/content/dictionaries";
 
-export function Problem() {
+export function Problem({ dict }: { dict: Dictionary["problem"] }) {
   return (
     <section className="border-b border-ink-200 bg-surface-subtle">
       <div className="mx-auto w-full max-w-3xl px-4 py-16 sm:px-6 sm:py-20">
-        <h2 className="text-3xl font-bold sm:text-4xl">{problem.title}</h2>
+        <h2 className="text-3xl font-bold sm:text-4xl">{dict.title}</h2>
 
         <dl className="mt-10 space-y-6">
-          {problem.items.map((item) => (
+          {dict.items.map((item) => (
             <div
               key={item.term}
               className="rounded-xl border border-ink-200 bg-surface p-5"
@@ -25,7 +25,7 @@ export function Problem() {
         </dl>
 
         <p className="mt-8 text-lg font-medium text-ink-900">
-          {problem.closing}
+          {dict.closing}
         </p>
       </div>
     </section>
