@@ -2,7 +2,32 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { Footer } from "@/components/Footer";
 import { Wordmark } from "@/components/Wordmark";
-import { privacy } from "@/content/privacy";
+import { privacy, privacyContactEmail } from "@/content/privacy";
+
+/**
+ * Rend l'adresse de contact cliquable partout où elle apparaît.
+ * Exercer un droit RGPD ne doit pas obliger à recopier une adresse
+ * à la main.
+ */
+function withMailtoLink(text: string) {
+  const parts = text.split(privacyContactEmail);
+  if (parts.length === 1) return text;
+
+  return parts.flatMap((part, i) =>
+    i === 0
+      ? [part]
+      : [
+          <a
+            key={i}
+            href={`mailto:${privacyContactEmail}`}
+            className="font-medium text-brand-700 underline underline-offset-2 hover:text-brand-800"
+          >
+            {privacyContactEmail}
+          </a>,
+          part,
+        ],
+  );
+}
 
 export const metadata: Metadata = {
   title: `${privacy.title} — ClariVolt`,
@@ -34,7 +59,9 @@ export default function Confidentialite() {
                 <h2 className="text-lg font-semibold text-ink-900">
                   {section.heading}
                 </h2>
-                <p className="mt-2 text-ink-700">{section.body}</p>
+                <p className="mt-2 text-ink-700">
+                  {withMailtoLink(section.body)}
+                </p>
               </section>
             ))}
           </div>

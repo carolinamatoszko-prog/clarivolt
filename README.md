@@ -49,6 +49,28 @@ Ou manuellement : `cp .env.example .env.local`, puis remplir.
 > `NEXT_PUBLIC_` : ce préfixe l'exposerait dans le navigateur, où
 > n'importe qui pourrait la lire et écrire dans la liste de contacts.
 
+## RGPD
+
+Le formulaire collecte une seule donnée : l'adresse e-mail.
+
+| | |
+|---|---|
+| Responsable du traitement | Carolina Matoszko, à titre individuel (pas encore de société, donc pas de SIREN) |
+| Base légale | consentement, case jamais pré-cochée |
+| Sous-traitant | Brevo (Sendinblue SAS, RCS Paris 498 019 298), hébergement UE |
+| Page | [`/confidentialite`](app/confidentialite/page.tsx), `noindex` |
+
+Le texte vit dans [`content/privacy.ts`](content/privacy.ts).
+
+**À mettre à jour :**
+- **à la création de la société** — raison sociale, SIREN, adresse
+- **si une mesure d'audience est ajoutée** — la section « Cookies »
+  affirme aujourd'hui qu'aucun cookie de suivi n'est déposé
+
+L'adresse postale est volontairement absente : le RGPD exige une identité
+et un moyen de contact, pas le domicile d'une personne physique sur un
+site ouvert.
+
 ## Structure
 
 ```
@@ -56,10 +78,28 @@ app/
   layout.tsx        langue, métadonnées, polices
   globals.css       palette (tokens Tailwind 4, @theme)
   page.tsx          composition de la page
-components/         Hero, Problem, Anticipation, FinalCta, Footer, Wordmark
+  actions.ts        Server Action d'inscription (côté serveur)
+  waitlist-state.ts état du formulaire — hors du fichier « use server »,
+                    qui ne peut exporter que des fonctions async
+  confidentialite/  politique de confidentialité
+components/         Hero, Problem, Anticipation, FinalCta, WaitlistForm,
+                    Footer, Wordmark
 content/lp.ts       TOUT le texte de la page
+content/privacy.ts  texte de la politique de confidentialité
 public/             logo
 ```
+
+### Le formulaire d'inscription
+
+Server Action (`app/actions.ts`), pas de Route Handler : aucun endpoint
+public exposé aux robots, et le formulaire fonctionne sans JavaScript.
+
+Règles à ne pas casser :
+- la clé Brevo ne quitte jamais le serveur ; aucune erreur de l'API n'est
+  renvoyée telle quelle au navigateur
+- ne **jamais** répondre « vous êtes déjà inscrit » : cela permettrait de
+  tester quelles adresses figurent dans la liste
+- la case de consentement n'est **jamais** pré-cochée
 
 ### Modifier le texte
 

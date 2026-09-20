@@ -1,12 +1,22 @@
 /**
  * Politique de confidentialité.
  *
- * `[À COMPLÉTER]` = information que seule Carolina peut fournir.
- * Ne jamais inventer une identité juridique ou un numéro SIREN.
+ * Le responsable du traitement est une personne physique :
+ * ClariVolt n'est pas encore constitué en société, donc aucun
+ * SIREN n'existe. Ne jamais présenter « ClariVolt » comme une
+ * entité juridique tant que ce n'est pas le cas.
  *
- * ⚠️ À revoir à l'étape 6 : si une mesure d'audience est ajoutée,
- * la section « Cookies » doit être mise à jour.
+ * Adresse postale volontairement absente : le RGPD exige une
+ * identité et un moyen de contact, pas le domicile d'une
+ * personne physique sur un site ouvert.
+ *
+ * ⚠️ À revoir :
+ *  - à la création de la société : raison sociale, SIREN, adresse
+ *  - à l'étape 6 : si une mesure d'audience est ajoutée, la
+ *    section « Cookies » doit être mise à jour
  */
+
+export const privacyContactEmail = "carolina.matoszko@gmail.com";
 
 export const privacy = {
   title: "Politique de confidentialité",
@@ -16,7 +26,7 @@ export const privacy = {
   sections: [
     {
       heading: "Responsable du traitement",
-      body: "[À COMPLÉTER : nom ou raison sociale] — [À COMPLÉTER : adresse] — SIREN [À COMPLÉTER]. Contact : [À COMPLÉTER : adresse e-mail de contact].",
+      body: "Carolina Matoszko, agissant à titre individuel pour le projet ClariVolt — Lyon, France. Le projet n'est pas encore constitué en société : aucun numéro SIREN n'est attribué à ce jour. Pour toute question, écrivez à carolina.matoszko@gmail.com.",
     },
     {
       heading: "Données collectées",
@@ -40,7 +50,7 @@ export const privacy = {
     },
     {
       heading: "Vos droits",
-      body: "Vous disposez d'un droit d'accès, de rectification, d'effacement, d'opposition et de portabilité de vos données. Pour les exercer, écrivez à [À COMPLÉTER : adresse e-mail de contact]. Votre demande est traitée dans un délai d'un mois.",
+      body: "Vous disposez d'un droit d'accès, de rectification, d'effacement, d'opposition et de portabilité de vos données. Pour les exercer, écrivez à carolina.matoszko@gmail.com. Votre demande est traitée dans un délai d'un mois.",
     },
     {
       heading: "Réclamation",
