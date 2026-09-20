@@ -6,8 +6,12 @@
  * Voir nextjs.org/docs/messages/invalid-use-server-value
  */
 
+/**
+ * Pas d'état « success » : une inscription réussie redirige vers
+ * /merci. L'état ne sert donc qu'aux erreurs et au repos.
+ */
 export type WaitlistState = {
-  status: "idle" | "success" | "error";
+  status: "idle" | "error";
   message: string;
 };
 

@@ -10,10 +10,12 @@
  * identité et un moyen de contact, pas le domicile d'une
  * personne physique sur un site ouvert.
  *
- * ⚠️ À revoir :
- *  - à la création de la société : raison sociale, SIREN, adresse
- *  - à l'étape 6 : si une mesure d'audience est ajoutée, la
- *    section « Cookies » doit être mise à jour
+ * ⚠️ À revoir à la création de la société : raison sociale, SIREN,
+ * adresse.
+ *
+ * La section « Mesure d'audience » décrit exactement ce que Vercel
+ * Web Analytics enregistre, d'après sa documentation. Si l'outil
+ * change, ce texte doit changer avec lui.
  */
 
 export const privacyContactEmail = "carolina.matoszko@gmail.com";
@@ -30,7 +32,7 @@ export const privacy = {
     },
     {
       heading: "Données collectées",
-      body: "Une seule donnée est collectée : votre adresse e-mail. Aucun nom, aucune information sur votre société, aucune donnée de navigation ne vous est demandée.",
+      body: "Le formulaire ne collecte qu'une seule donnée : votre adresse e-mail. Aucun nom ni information sur votre société ne vous est demandé. S'y ajoute une mesure d'audience anonyme, décrite plus bas.",
     },
     {
       heading: "Finalité",
@@ -58,7 +60,11 @@ export const privacy = {
     },
     {
       heading: "Cookies",
-      body: "Ce site ne dépose aucun cookie de suivi ni de mesure d'audience.",
+      body: "Ce site ne dépose aucun cookie, ni de suivi ni de mesure d'audience.",
+    },
+    {
+      heading: "Mesure d'audience",
+      body: "Ce site utilise Vercel Web Analytics, une mesure d'audience sans cookie. Elle enregistre de façon agrégée : la page consultée, le site référent, le type d'appareil, le navigateur et une localisation approximative (pays, région, ville). Aucune adresse IP n'est conservée et aucun identifiant ne permet de vous suivre d'un site à l'autre : le visiteur est reconnu par une empreinte calculée à partir de la requête, supprimée au bout de 24 heures. Ces données ne sont pas rapprochées de votre adresse e-mail.",
     },
   ],
   back: "Retour à l'accueil",

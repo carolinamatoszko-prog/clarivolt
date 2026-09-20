@@ -126,6 +126,23 @@ export const finalCta = {
   note: "Nous contactons les premiers inscrits pour comprendre leur parc.",
 } as const;
 
+/**
+ * Page de confirmation.
+ *
+ * Elle existe pour une raison de mesure : le plan Hobby de Vercel
+ * n'ouvre pas les événements personnalisés (réservés aux plans Pro
+ * et Enterprise). Une inscription réussie doit donc produire une
+ * page vue distincte, sinon la conversion est incalculable.
+ *
+ *   taux de conversion = pages vues /merci ÷ pages vues /
+ */
+export const thanks = {
+  title: "Vous êtes sur la liste",
+  lead: "Merci. Nous vous préviendrons à l'ouverture de ClariVolt.",
+  next: "Nous contactons les premiers inscrits pour comprendre leur parc : si votre portefeuille s'y prête, vous recevrez une invitation à échanger.",
+  back: "Retour à l'accueil",
+} as const;
+
 export const form = {
   emailLabel: "Votre adresse e-mail professionnelle",
   emailPlaceholder: "prenom.nom@exemple.fr",

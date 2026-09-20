@@ -12,20 +12,8 @@ export function WaitlistForm() {
     initialWaitlistState,
   );
 
-  if (state.status === "success") {
-    return (
-      <div
-        role="status"
-        className="rounded-xl border border-accent-300 bg-accent-50 p-5"
-      >
-        <p className="font-medium text-ink-900">{state.message}</p>
-        <p className="mt-1 text-sm text-ink-700">
-          Nous revenons vers vous pour comprendre votre parc.
-        </p>
-      </div>
-    );
-  }
-
+  // Pas d'état de succès ici : l'action redirige vers /merci, dont la
+  // page vue sert à mesurer la conversion (voir app/actions.ts).
   return (
     <form action={formAction} className="max-w-xl">
       <label
