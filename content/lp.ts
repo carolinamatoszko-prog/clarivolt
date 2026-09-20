@@ -126,6 +126,18 @@ export const finalCta = {
   note: "Nous contactons les premiers inscrits pour comprendre leur parc.",
 } as const;
 
+export const form = {
+  emailLabel: "Votre adresse e-mail professionnelle",
+  emailPlaceholder: "prenom.nom@exemple.fr",
+  submit: "Rejoindre la liste",
+  submitting: "Envoi…",
+  /** RGPD : case jamais pré-cochée, consentement explicite. */
+  consent:
+    "J'accepte d'être contacté(e) au sujet de ClariVolt. Mon adresse ne sera ni revendue ni partagée.",
+  consentLinkLabel: "Politique de confidentialité",
+  consentLinkHref: "/confidentialite",
+} as const;
+
 /* ============================================================
    Pied de page
    ============================================================ */

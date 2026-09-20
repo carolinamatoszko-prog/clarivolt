@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { footer } from "@/content/lp";
 
 export function Footer() {
@@ -20,8 +21,14 @@ export function Footer() {
           </a>
         </p>
 
-        {/* Politique de confidentialité : ajoutée à l'étape 4, avec le
-            formulaire et la case de consentement qui la référencent. */}
+        <p className="mt-4 text-sm">
+          <Link
+            href="/confidentialite"
+            className="text-ink-500 underline underline-offset-2 hover:text-ink-700"
+          >
+            Politique de confidentialité
+          </Link>
+        </p>
       </div>
     </footer>
   );

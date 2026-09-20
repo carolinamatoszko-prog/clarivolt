@@ -1,3 +1,4 @@
+import { WaitlistForm } from "@/components/WaitlistForm";
 import { finalCta } from "@/content/lp";
 
 /**
@@ -19,14 +20,9 @@ export function FinalCta() {
 
         <p className="mt-4 max-w-2xl text-lg text-ink-700">{finalCta.lead}</p>
 
-        <div className="mt-8 flex flex-col items-start gap-3">
-          <button
-            type="button"
-            className="rounded-lg bg-brand-700 px-6 py-3 font-medium text-white transition-colors hover:bg-brand-800"
-          >
-            {finalCta.cta.label}
-          </button>
-          <p className="text-sm text-ink-500">{finalCta.note}</p>
+        <div className="mt-8">
+          <WaitlistForm />
+          <p className="mt-4 text-sm text-ink-500">{finalCta.note}</p>
         </div>
       </div>
     </section>

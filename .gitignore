@@ -45,3 +45,4 @@ next-env.d.ts
 
 # Document de travail interne — ne pas publier (dépôt public)
 BRIEF.md
+.env*.local
