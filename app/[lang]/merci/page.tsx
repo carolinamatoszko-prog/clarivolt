@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/Footer";
 import { SiteHeader } from "@/components/SiteHeader";
+import { Container } from "@/components/ui/Container";
+import { AccentRule, PageShell, TextLink } from "@/components/ui";
 import { getDictionary } from "@/content/dictionaries";
 import { hasLocale } from "@/content/locales";
 
@@ -29,31 +30,23 @@ export default async function Merci({ params }: PageProps<"/[lang]/merci">) {
   const thanks = dict.thanks;
 
   return (
-    <>
-      <SiteHeader lang={lang} />
+    <PageShell
+      header={<SiteHeader lang={lang} />}
+      footer={<Footer dict={dict.footer} lang={lang} />}
+    >
+      <Container padding="wide">
+        <AccentRule />
 
-      <main className="flex-1">
-        <div className="mx-auto w-full max-w-3xl px-4 py-16 sm:px-6 sm:py-24">
-          <hr className="mb-8 h-0.5 w-16 rounded-full border-0 bg-accent-500" />
+        <h1 className="text-3xl font-bold sm:text-5xl">{thanks.title}</h1>
 
-          <h1 className="text-3xl font-bold sm:text-5xl">{thanks.title}</h1>
+        <p className="mt-6 max-w-2xl text-lg text-ink-700">{thanks.lead}</p>
 
-          <p className="mt-6 max-w-2xl text-lg text-ink-700">{thanks.lead}</p>
+        <p className="mt-4 max-w-2xl text-ink-700">{thanks.next}</p>
 
-          <p className="mt-4 max-w-2xl text-ink-700">{thanks.next}</p>
-
-          <p className="mt-10">
-            <Link
-              href={`/${lang}`}
-              className="font-medium text-brand-700 underline underline-offset-2 hover:text-brand-800"
-            >
-              {thanks.back}
-            </Link>
-          </p>
-        </div>
-      </main>
-
-      <Footer dict={dict.footer} lang={lang} />
-    </>
+        <p className="mt-10">
+          <TextLink href={`/${lang}`}>{thanks.back}</TextLink>
+        </p>
+      </Container>
+    </PageShell>
   );
 }

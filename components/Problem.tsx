@@ -1,9 +1,11 @@
+import { Container } from "@/components/ui/Container";
+import { Bullet } from "@/components/ui";
 import type { Dictionary } from "@/content/dictionaries";
 
 export function Problem({ dict }: { dict: Dictionary["problem"] }) {
   return (
     <section className="border-b border-ink-200 bg-surface-subtle">
-      <div className="mx-auto w-full max-w-3xl px-4 py-16 sm:px-6 sm:py-20">
+      <Container>
         <h2 className="text-3xl font-bold sm:text-4xl">{dict.title}</h2>
 
         <dl className="mt-10 space-y-6">
@@ -13,10 +15,7 @@ export function Problem({ dict }: { dict: Dictionary["problem"] }) {
               className="rounded-xl border border-ink-200 bg-surface p-5"
             >
               <dt className="flex items-center gap-2.5 font-semibold text-ink-900">
-                <span
-                  aria-hidden
-                  className="h-2 w-2 shrink-0 rounded-full bg-signal-500"
-                />
+                <Bullet />
                 {item.term}
               </dt>
               <dd className="mt-2 pl-[1.125rem] text-ink-700">{item.text}</dd>
@@ -24,10 +23,8 @@ export function Problem({ dict }: { dict: Dictionary["problem"] }) {
           ))}
         </dl>
 
-        <p className="mt-8 text-lg font-medium text-ink-900">
-          {dict.closing}
-        </p>
-      </div>
+        <p className="mt-8 text-lg font-medium text-ink-900">{dict.closing}</p>
+      </Container>
     </section>
   );
 }

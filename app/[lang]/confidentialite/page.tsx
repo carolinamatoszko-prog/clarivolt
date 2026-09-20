@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Footer } from "@/components/Footer";
 import { SiteHeader } from "@/components/SiteHeader";
+import { Container } from "@/components/ui/Container";
+import { PageShell, TextLink, TextLinkExternal } from "@/components/ui";
 import { privacyContactEmail } from "@/content/contact";
 import { getDictionary } from "@/content/dictionaries";
 import { hasLocale } from "@/content/locales";
@@ -34,13 +35,9 @@ function withMailtoLink(text: string) {
     i === 0
       ? [part]
       : [
-          <a
-            key={i}
-            href={`mailto:${privacyContactEmail}`}
-            className="font-medium text-brand-700 underline underline-offset-2 hover:text-brand-800"
-          >
+          <TextLinkExternal key={i} href={`mailto:${privacyContactEmail}`}>
             {privacyContactEmail}
-          </a>,
+          </TextLinkExternal>,
           part,
         ],
   );
@@ -56,47 +53,39 @@ export default async function Confidentialite({
   const privacy = dict.privacy;
 
   return (
-    <>
-      <SiteHeader lang={lang} />
+    <PageShell
+      header={<SiteHeader lang={lang} />}
+      footer={<Footer dict={dict.footer} lang={lang} />}
+    >
+      <Container padding="document">
+        <h1 className="text-3xl font-bold sm:text-4xl">{privacy.title}</h1>
+        <p className="mt-2 text-sm text-ink-500">{privacy.updated}</p>
+        <p className="mt-6 text-lg text-ink-700">{privacy.intro}</p>
 
-      <main className="flex-1">
-        <div className="mx-auto w-full max-w-3xl px-4 py-12 sm:px-6 sm:py-16">
-          <h1 className="text-3xl font-bold sm:text-4xl">{privacy.title}</h1>
-          <p className="mt-2 text-sm text-ink-500">{privacy.updated}</p>
-          <p className="mt-6 text-lg text-ink-700">{privacy.intro}</p>
-
-          <div className="mt-10 space-y-8">
-            {privacy.sections.map((section) => (
-              <section key={section.heading}>
-                <h2 className="text-lg font-semibold text-ink-900">
-                  {section.heading}
-                </h2>
-                <p className="mt-2 text-ink-700">
-                  {withMailtoLink(section.body)}
-                </p>
-              </section>
-            ))}
-          </div>
-
-          {/* Vide en français : cette version-là EST le texte de référence. */}
-          {privacy.languageNote && (
-            <p className="mt-10 border-l-2 border-ink-300 pl-4 text-sm text-ink-500">
-              {privacy.languageNote}
-            </p>
-          )}
-
-          <p className="mt-12">
-            <Link
-              href={`/${lang}`}
-              className="font-medium text-brand-700 underline underline-offset-2 hover:text-brand-800"
-            >
-              {privacy.back}
-            </Link>
-          </p>
+        <div className="mt-10 space-y-8">
+          {privacy.sections.map((section) => (
+            <section key={section.heading}>
+              <h2 className="text-lg font-semibold text-ink-900">
+                {section.heading}
+              </h2>
+              <p className="mt-2 text-ink-700">
+                {withMailtoLink(section.body)}
+              </p>
+            </section>
+          ))}
         </div>
-      </main>
 
-      <Footer dict={dict.footer} lang={lang} />
-    </>
+        {/* Vide en français : cette version-là EST le texte de référence. */}
+        {privacy.languageNote && (
+          <p className="mt-10 border-l-2 border-ink-300 pl-4 text-sm text-ink-500">
+            {privacy.languageNote}
+          </p>
+        )}
+
+        <p className="mt-12">
+          <TextLink href={`/${lang}`}>{privacy.back}</TextLink>
+        </p>
+      </Container>
+    </PageShell>
   );
 }

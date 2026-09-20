@@ -1,3 +1,5 @@
+import { Container } from "@/components/ui/Container";
+import { CtaLink } from "@/components/ui";
 import type { Dictionary } from "@/content/dictionaries";
 
 export function Hero({ dict }: { dict: Dictionary["hero"] }) {
@@ -15,7 +17,7 @@ export function Hero({ dict }: { dict: Dictionary["hero"] }) {
 
       {/* Padding asymétrique : peu en haut pour que l'accroche soit
           lisible dès l'ouverture, de l'air en bas pour respirer. */}
-      <div className="relative mx-auto w-full max-w-3xl px-4 pt-8 pb-20 sm:px-6 sm:pt-12 sm:pb-28">
+      <Container padding="hero" className="relative">
         <p className="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-3 py-1 text-sm font-medium text-brand-700">
           <span
             aria-hidden
@@ -45,15 +47,10 @@ export function Hero({ dict }: { dict: Dictionary["hero"] }) {
         </p>
 
         <div className="mt-9 flex flex-col items-start gap-3">
-          <a
-            href={dict.cta.href}
-            className="rounded-lg bg-brand-700 px-6 py-3 font-medium text-white transition-colors hover:bg-brand-800"
-          >
-            {dict.cta.label}
-          </a>
+          <CtaLink href={dict.cta.href}>{dict.cta.label}</CtaLink>
           <p className="text-sm text-ink-500">{dict.ctaNote}</p>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

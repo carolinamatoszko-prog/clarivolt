@@ -1,3 +1,5 @@
+import { Container } from "@/components/ui/Container";
+import { Bullet } from "@/components/ui";
 import type { Dictionary } from "@/content/dictionaries";
 
 /**
@@ -10,11 +12,9 @@ import type { Dictionary } from "@/content/dictionaries";
 export function Anticipation({ dict }: { dict: Dictionary["anticipation"] }) {
   return (
     <section className="border-b border-ink-200 bg-surface">
-      <div className="mx-auto w-full max-w-3xl px-4 py-16 sm:px-6 sm:py-20">
+      <Container>
         <h2 className="text-3xl font-bold sm:text-4xl">{dict.title}</h2>
-        <p className="mt-4 max-w-2xl text-lg text-ink-700">
-          {dict.lead}
-        </p>
+        <p className="mt-4 max-w-2xl text-lg text-ink-700">{dict.lead}</p>
 
         <ul className="mt-10 space-y-4">
           {dict.items.map((item) => (
@@ -23,10 +23,7 @@ export function Anticipation({ dict }: { dict: Dictionary["anticipation"] }) {
               className="grid gap-3 rounded-xl border border-ink-200 bg-surface-subtle p-5 sm:grid-cols-[1fr_auto_1.4fr] sm:items-center sm:gap-5"
             >
               <span className="inline-flex items-start gap-2.5 font-semibold text-ink-900">
-                <span
-                  aria-hidden
-                  className="mt-1.5 h-2 w-2 shrink-0 rounded-full bg-signal-500"
-                />
+                <Bullet className="mt-1.5" />
                 {item.event}
               </span>
 
@@ -46,7 +43,7 @@ export function Anticipation({ dict }: { dict: Dictionary["anticipation"] }) {
         <p className="mt-8 border-l-2 border-accent-500 pl-4 text-lg font-medium text-ink-900">
           {dict.closing}
         </p>
-      </div>
+      </Container>
     </section>
   );
 }

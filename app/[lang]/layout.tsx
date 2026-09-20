@@ -44,9 +44,10 @@ export async function generateMetadata({
     // page en deux langues, et non du contenu dupliqué.
     alternates: {
       canonical: `/${lang}`,
-      languages: Object.fromEntries(
-        locales.map((l) => [l, `/${l}`]),
-      ) as Record<Locale, string>,
+      languages: Object.fromEntries(locales.map((l) => [l, `/${l}`])) as Record<
+        Locale,
+        string
+      >,
     },
   };
 }

@@ -179,6 +179,29 @@ Tester une nouvelle accroche = modifier `fr.ts` (et `en.ts`).
 Règle : **aucun chiffre non vérifié.** Un nombre non validé s'écrit
 `[CHIFFRE À VALIDER]`.
 
+### Primitives visuelles
+
+`components/ui/` regroupe ce qui était recopié à plusieurs endroits :
+
+| Primitive | Remplaçait |
+|---|---|
+| `Container` | la largeur du site, copiée dans 8 fichiers |
+| `PageShell` | la structure en-tête / main / pied, répétée 3 fois |
+| `CtaLink` / `CtaButton` | le style du bouton d'action |
+| `TextLink` / `TextLinkExternal` | le style de lien, 5 occurrences |
+| `AccentRule`, `Bullet` | le filet vert et la puce ambre |
+
+`Container` porte l'alignement du site : le sélecteur de langue, les
+titres et le formulaire en dépendent tous. Changer la largeur du site se
+fait là, une seule fois.
+
+**Ce qui n'a délibérément pas été extrait :** le style des titres de
+section, identique à quatre endroits. Le niveau de titre (`h1`, `h2`)
+porte du sens pour les lecteurs d'écran et doit rester explicite ; un
+composant qui le masquerait derrière une prop coûterait plus qu'il ne
+rapporte. De même, le lien du pied de page reste plus discret qu'un
+`TextLink` — c'est une hiérarchie voulue, pas un oubli.
+
 ### Modifier les couleurs
 
 Les tokens sont définis dans le bloc `@theme` de `app/globals.css`, ancrés

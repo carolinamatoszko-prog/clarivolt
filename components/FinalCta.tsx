@@ -1,4 +1,6 @@
 import { WaitlistForm } from "@/components/WaitlistForm";
+import { Container } from "@/components/ui/Container";
+import { AccentRule } from "@/components/ui";
 import type { Dictionary } from "@/content/dictionaries";
 import type { Locale } from "@/content/locales";
 
@@ -21,9 +23,8 @@ export function FinalCta({
       id="waitlist"
       className="scroll-mt-8 border-b border-ink-200 bg-surface"
     >
-      <div className="mx-auto w-full max-w-3xl px-4 py-16 sm:px-6 sm:py-20">
-        {/* Le petit trait : marque la bascule vers l'appel à l'action */}
-        <hr className="mb-8 h-0.5 w-16 rounded-full border-0 bg-accent-500" />
+      <Container>
+        <AccentRule />
 
         <h2 className="text-3xl font-bold sm:text-4xl">{dict.title}</h2>
 
@@ -32,7 +33,7 @@ export function FinalCta({
         <div className="mt-8">
           <WaitlistForm dict={form} lang={lang} />
         </div>
-      </div>
+      </Container>
     </section>
   );
 }

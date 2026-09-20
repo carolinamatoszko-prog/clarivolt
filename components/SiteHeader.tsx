@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { Wordmark } from "@/components/Wordmark";
+import { Container } from "@/components/ui/Container";
 import type { Locale } from "@/content/locales";
 
 /**
@@ -15,12 +16,12 @@ import type { Locale } from "@/content/locales";
 export function SiteHeader({ lang }: { lang: Locale }) {
   return (
     <header className="border-b border-ink-200 bg-surface">
-      <div className="mx-auto flex w-full max-w-3xl items-center justify-between px-4 py-4 sm:px-6">
+      <Container padding="header" className="flex items-center justify-between">
         <Link href={`/${lang}`} aria-label="ClariVolt">
           <Wordmark />
         </Link>
         <LanguageSwitcher current={lang} />
-      </div>
+      </Container>
     </header>
   );
 }
