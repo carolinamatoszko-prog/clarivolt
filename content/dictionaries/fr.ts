@@ -5,36 +5,78 @@
  * nouvelle hypothèse = modifier ce fichier, pas le JSX.
  *
  * RÈGLE : aucun chiffre non vérifié. Un nombre non validé s'écrit
- * `[CHIFFRE À VALIDER]` — on ne l'invente pas.
+ * `[CHIFFRE À VALIDER]` — on ne l'invente pas. Un chiffre vérifié
+ * porte sa source dans la phrase même : sans source affichée, il
+ * redevient une affirmation indéfendable en entretien.
  *
- * Cible v1 : asset managers de parcs photovoltaïques (France).
- * O&M explicitement hors périmètre v1 — leur promesse est inverse
- * (prouver la performance au client), ce serait une autre page.
+ * Cible : responsables d'exploitation de centrales photovoltaïques
+ * (France) — le décideur qui pilote le budget O&M, qu'il soit
+ * interne ou sous-traité. Le prestataire O&M reste hors périmètre :
+ * sa promesse est inverse (prouver sa performance à son client),
+ * ce serait une autre page.
+ *
+ * Angle : on ne vend pas l'alerte, on vend le moment rentable. La
+ * supervision détecte déjà l'arrêt ; ce qui manque, c'est de savoir
+ * quand l'intervention rapporte plus qu'elle ne coûte. La version
+ * précédente vendait la détection de pertes invisibles — c'est ce
+ * déplacement qu'il faut garder en tête avant de retoucher un
+ * texte ici.
  */
 
 const hero = {
-  eyebrow: "Asset managers de parcs photovoltaïques",
+  /**
+   * L'étiquette nomme le métier ; c'est le titre juste en dessous
+   * qui pose le solaire (« votre centrale solaire »). Si le titre
+   * change un jour, vérifier que la page dit toujours de quelle
+   * énergie elle parle avant le premier paragraphe.
+   */
+  eyebrow: "IPP (Producteur Indépendant d'Énergie) · asset managers",
 
   /** Une entrée par ligne — le saut de ligne est intentionnel. */
-  title: ["Une fuite d'eau, on l'entend.", "Une perte d'énergie, non."],
+  title: [
+    "Votre centrale solaire perd de la production.",
+    "Reste à savoir quand intervenir.",
+  ],
 
   /**
-   * Le Hero pose le phénomène, il n'énumère pas : l'énumération
-   * (salissure / dérive / onduleur) appartient au bloc Problème.
-   * Éviter de dire deux fois la même chose à deux endroits.
+   * Le Hero pose le phénomène puis bascule, il n'énumère pas : les
+   * causes techniques (dérive, string déconnectée, ombrage)
+   * appartiennent au bloc Problème. Éviter de dire deux fois la
+   * même chose à deux endroits.
+   *
+   * La dernière phrase porte l'angle entier — la supervision
+   * mesure l'écart, elle ne dit pas quand l'intervention vaut son
+   * coût. Ne pas la couper du reste.
    */
-  lead: "La baisse de production de vos panneaux solaires ne fait pas de bruit. Elle passe inaperçue pendant des mois. Le jour où vous constatez l'écart de rendement, l'accumulation de ces micro-pertes a déjà coûté cher.",
+  lead: "Une centrale photovoltaïque perd de la production sans que rien ne casse. Ces pertes échappent au taux de disponibilité, et l'intervention suit le calendrier du contrat — sans savoir si c'est le bon moment.",
 
   /**
    * Le « pourquoi maintenant » : l'économie du kWh.
-   * Formulé qualitativement, sans chiffre — la pression sur la
-   * rentabilité, pas un pourcentage inventé.
+   *
+   * Seuls chiffres de la page, et chacun porte sa source dans la
+   * phrase. Les chiffres dérivés du dossier (18 jours de
+   * production, 89 k€, « 4× ce qu'il paie ») restent dehors : ils
+   * enchaînent des hypothèses de travail — 1 200 kWh/kWc, 50 % de
+   * la perte récupérable, 25 % du gain — qu'une landing ne peut
+   * pas afficher avec elles. Sans ces réserves, ce sont des
+   * promesses de résultat.
+   *
+   * La baisse du prix de vente reste volontairement qualitative :
+   * le −10 % des derniers appels d'offres au sol est exact et
+   * sourcé, mais un pourcentage attire la discussion sur lui-même
+   * au lieu de la laisser sur la marge.
    */
   whyNow:
-    "Dans le contexte énergétique actuel, l'exigence de rentabilité est maximale : chaque kWh manquant dégrade directement votre retour sur investissement.",
+    "Le parc français dépasse 33 GW et vise 48 GW en 2030 (SDES, mars 2026 ; PPE3), alors que le prix de vente baisse. Chaque kWh perdu pèse davantage sur la marge.",
 
   cta: {
-    label: "Rejoindre la liste d'accès anticipé",
+    /**
+     * Plus « accès anticipé » : la page ne promet plus l'ouverture
+     * d'un produit, elle demande une conversation. L'ancre
+     * #waitlist ne change pas — c'est elle que visent les deux CTA
+     * et l'id de la section FinalCta.
+     */
+    label: "Échanger sur votre parc",
     href: "#waitlist",
   },
 
@@ -43,57 +85,86 @@ const hero = {
 };
 
 /* ============================================================
-   Bloc « Problème » — les pertes silencieuses (rétrospectif)
+   Bloc « Problème » — les types de perte, puis le constat
+
+   Les cartes listent ce qui fait perdre de la production, repris du
+   prototype de diagnostic : l'onduleur domine, l'encrassement est
+   la perte la plus connue et la moins rentable à traiter seule.
+
+   L'angle n'est pas dans les cartes mais autour : le titre et la
+   phrase de clôture portent le constat (disponibilité au vert,
+   aucune alarme, intervention au calendrier). Déplacer l'un des
+   deux dans une carte ferait perdre le lien entre les types de
+   perte et le moment de l'intervention.
    ============================================================ */
 
 const problem = {
-  title: "Sans analyse fine, ces sous-performances peuvent passer inaperçues",
+  title: "Le contrat est tenu, et la production manque quand même",
   items: [
     {
-      term: "Salissure",
-      text: "La production baisse lentement, sans jamais attirer l'attention, jusqu'à provoquer des dégâts plus importants sur les panneaux.",
+      term: "Onduleur qui bride ou qui dérive",
+      text: "Il reste connecté et n'envoie aucun signal de défaut. Il produit simplement moins que ses voisins, parfois pendant des mois.",
     },
     {
-      term: "Anomalies silencieuses",
-      text: "Parce que votre production varie naturellement avec la météo, l'apparition d'une nouvelle anomalie passe totalement inaperçue. Elle se fond simplement dans les jours nuageux.",
+      term: "String déconnectée",
+      text: "Une partie du champ s'arrête, le reste continue de produire. À l'échelle de la centrale, l'écart se confond avec une journée moins ensoleillée.",
     },
     {
-      term: "Onduleur fatigué",
-      text: "Il ne tombe pas nécessairement en panne et n'envoie aucun signal de défaut. Il reste connecté, mais produit tout simplement moins que ses voisins.",
+      term: "Ombrage",
+      text: "Une végétation qui pousse, une structure voisine : l'ombre portée s'étend lentement et suit les saisons, sans jamais rien interrompre.",
+    },
+    {
+      term: "Encrassement",
+      text: "La production baisse lentement sur l'ensemble du champ. C'est la perte la plus connue, et souvent la moins rentable à traiter seule : un nettoyage n'en rattrape qu'une partie.",
     },
   ],
   closing:
-    "Invisibles, ces pertes s'accumulent et pénalisent votre rentabilité en continu.",
+    "Aucun de ces écarts n'arrête un équipement : la disponibilité reste au vert, aucune alarme ne se déclenche, et l'intervention arrive quand même à la date prévue au contrat.",
 };
 
 /* ============================================================
    Bloc « Vision » — ce vers quoi le produit est construit
 
    ⚠️ Aucune capacité décrite ici n'existe encore, et le texte le
-   dit lui-même : « notre approche vise à », « l'objectif est de ».
-   C'est précisément ce que le fake door teste. Le CTA reste une
-   liste d'attente — aucune promesse de livraison.
+   dit lui-même : « notre approche vise à », « notre objectif est
+   de ». C'est précisément ce que le fake door teste — aucune
+   promesse de livraison.
 
-   Deux entrées seulement : détecter, puis anticiper. Les cartes
-   sont empilées pleine largeur, comme le bloc Problème.
+   Exception assumée : « ClariVolt ne gère pas les interventions »
+   est au présent. Ce n'est pas une capacité annoncée mais une
+   limite de périmètre, et c'est elle qui désarme l'objection
+   « vous venez marcher sur mon O&M ».
+
+   La météo n'est plus une promesse : elle est devenue un intrant
+   du calcul de production attendue. L'ancienne entrée sur l'impact
+   climatique a donc disparu — la rouvrir reviendrait à poser une
+   seconde proposition de valeur sur la même page.
+
+   Trois entrées : la règle de décision, le branchement, la
+   frontière. Les cartes sont empilées pleine largeur, comme le
+   bloc Problème.
    ============================================================ */
 
 const anticipation = {
   eyebrow: "Vision",
-  title:
-    "Votre donnée, analysée en profondeur, pour optimiser votre production",
-  lead: "Notre vision : une analyse approfondie de vos données de production, combinée à la modélisation météorologique, pour transformer l'incertitude en stratégie de résilience.",
+  title: "Quelle intervention, à quel moment, pour combien d'euros",
+  lead: "Notre vision : comparer la production réelle à la production attendue, météo comprise, et chiffrer en euros ce que chaque écart coûte — pour calculer le moment où l'intervention rapporte plus qu'elle ne coûte.",
   items: [
     {
-      term: "Détecter et comprendre les pertes silencieuses",
-      text: "Plutôt que de subir des baisses de production inexpliquées, notre approche vise à analyser en profondeur l'historique et les flux de données de votre parc. En croisant les variables de performance, l'objectif est de mettre en lumière les schémas invisibles pour comprendre l'origine exacte des dysfonctionnements et anticiper les problèmes potentiels avant qu'ils n'impactent la rentabilité.",
+      term: "La règle de décision",
+      text: "La perte s'accumule tant qu'on attend ; l'intervention, elle, a un coût fixe. Notre objectif est de suivre ces deux courbes centrale par centrale : le point où elles se croisent donne la date au-delà de laquelle attendre coûte plus cher qu'intervenir.",
     },
     {
-      term: "Anticiper l'impact climatique",
-      text: "Face aux dérèglements climatiques, les gestionnaires d'actifs ont besoin de visibilité. Notre approche vise à intégrer les modèles météorologiques pour simuler et anticiper l'impact des aléas sur vos installations — passer d'une maintenance réactive et aveugle à une planification proactive des interventions.",
+      term: "Se brancher, sans rien remplacer",
+      text: "Notre approche vise à lire les données de votre supervision existante, en lecture seule et sans projet data. La mesure de l'écart s'ajoute à ce que vos équipes suivent déjà — elle ne s'y substitue pas.",
+    },
+    {
+      term: "Le planning reste chez vous",
+      text: "ClariVolt ne gère pas les interventions : elles restent dans votre GMAO. Notre objectif est de dire quoi traiter en premier, selon les euros en jeu ; la décision et le calendrier vous appartiennent.",
     },
   ],
-  closing: "C'est la direction vers laquelle nous construisons ClariVolt.",
+  closing:
+    "Ne rien faire est aussi une décision — encore faut-il savoir ce qu'elle coûte.",
 };
 
 /* ============================================================
@@ -105,9 +176,14 @@ const anticipation = {
    ============================================================ */
 
 const finalCta = {
-  title: "Savoir ce que votre parc perd en silence",
-  lead: "Nous contactons les premiers inscrits pour comprendre leur parc.",
-  cta: { label: "Rejoindre la liste d'accès anticipé" },
+  title: "Savoir quand vos interventions valent ce qu'elles coûtent",
+  /**
+   * L'état réel du projet est dit ici, là où l'on demande quelque
+   * chose. Une page qui demande des données sans dire où elle en
+   * est se décrédibilise au premier échange.
+   */
+  lead: "Nous en sommes au prototype, testé sur des exports reconstitués à partir de données réelles. Prochaine étape : deux diagnostics sur les données de centrales en exploitation. Nous contactons les premiers inscrits pour comprendre leur parc.",
+  cta: { label: "Échanger sur votre parc" },
   /**
    * `note` retirée : elle portait exactement la phrase devenue le
    * `lead`, qui serait donc apparue deux fois dans le même bloc.
@@ -127,16 +203,16 @@ const finalCta = {
  *   taux de conversion = pages vues /merci ÷ pages vues /
  */
 const thanks = {
-  title: "Vous êtes sur la liste",
-  lead: "Merci. Nous vous préviendrons à l'ouverture de ClariVolt.",
-  next: "Nous contactons les premiers inscrits pour comprendre leur parc : si votre portefeuille s'y prête, vous recevrez une invitation à échanger.",
+  title: "Votre demande est enregistrée",
+  lead: "Merci. Nous revenons vers vous pour convenir d'un échange.",
+  next: "Nous contactons les premiers inscrits pour comprendre leur parc : si le vôtre s'y prête, vous recevrez une invitation à en parler.",
   back: "Retour à l'accueil",
 };
 
 const form = {
   emailLabel: "Votre adresse e-mail professionnelle",
   emailPlaceholder: "prenom.nom@exemple.fr",
-  submit: "Rejoindre la liste",
+  submit: "Demander un échange",
   submitting: "Envoi…",
   /** RGPD : case jamais pré-cochée, consentement explicite. */
   consent:
@@ -164,7 +240,7 @@ const footer = {
   privacyLabel: "Politique de confidentialité",
   contact: {
     /** Espace insécable avant les deux-points : typographie française. */
-    label: "Contact :",
+    label: "Contact :",
     name: "Carolina Matoszko",
     href: "https://www.linkedin.com/in/carolina-matoszko-b52059a0/",
   },
@@ -188,8 +264,15 @@ export const fr = {
   privacy: {
     title: "Politique de confidentialité",
     updated: "Dernière mise à jour : 20 septembre 2026",
+    /**
+     * Décrit le formulaire, pas le traitement : la finalité, les
+     * données collectées, le sous-traitant et les droits sont
+     * inchangés, donc la date de mise à jour ne bouge pas. Seul le
+     * nom du formulaire suit le CTA, qui ne parle plus d'« accès
+     * anticipé ».
+     */
     intro:
-      "Cette page décrit comment les données transmises via le formulaire d'inscription à la liste d'accès anticipé de ClariVolt sont traitées.",
+      "Cette page décrit comment les données transmises via le formulaire de contact de ClariVolt sont traitées.",
     sections: [
       {
         heading: "Responsable du traitement",
@@ -238,9 +321,9 @@ export const fr = {
   },
 
   meta: {
-    title: "ClariVolt — La performance de votre parc photovoltaïque",
+    title: "ClariVolt — Quand intervenir sur vos centrales photovoltaïques",
     description:
-      "Les pertes silencieuses — salissure, dérive, onduleur sous-performant — ne déclenchent aucune alarme. ClariVolt les rend visibles.",
+      "Les pertes de production échappent au taux de disponibilité, et l'intervention suit le calendrier du contrat. ClariVolt vise à calculer le moment où elle rapporte plus qu'elle ne coûte.",
   },
 };
 

@@ -7,22 +7,35 @@ import type { Dictionary } from "./fr";
  * misspelt key fails the build instead of rendering "undefined" in
  * production. Never loosen this.
  *
- * Tone: professional B2B SaaS. "parc" is rendered as "portfolio"
- * throughout — the audience manages a portfolio of solar assets.
+ * Tone: professional B2B SaaS. Fixed renderings, so the same term
+ * never arrives twice in two shapes: "parc" → "portfolio",
+ * "centrale" → "plant", "taux de disponibilité" → "availability
+ * rate", "GMAO" → "CMMS", "responsable d'exploitation" →
+ * "operations manager".
  */
 export const en = {
   hero: {
-    eyebrow: "Solar portfolio asset managers",
+    eyebrow: "IPPs (independent power producers) · asset managers",
 
-    title: ["You can hear a water leak.", "You can't hear an energy loss."],
+    title: [
+      "Your solar plant is losing production.",
+      "The question is when to act.",
+    ],
 
-    lead: "The drop in production of your solar panels is silent. It goes unnoticed for months. By the time you notice the performance gap, the accumulation of these micro-losses has already cost you dearly.",
+    lead: "A solar plant loses production without anything breaking. Those losses escape the availability rate, and the intervention follows the contract calendar — with no way of knowing whether this is the right moment.",
 
+    /**
+     * The only figures on the page, each carrying its source in the
+     * sentence. The derived ones (18 days of production, €89k, "4×
+     * what you pay") stay out: they chain working assumptions the
+     * French file lists, and a landing page cannot display those
+     * caveats alongside them.
+     */
     whyNow:
-      "In today's energy landscape, the demand for profitability is absolute: every missing kWh directly impacts your ROI.",
+      "France's installed base has passed 33 GW and targets 48 GW by 2030 (SDES, March 2026; PPE3), while selling prices fall. Every lost kWh weighs more heavily on the margin.",
 
     cta: {
-      label: "Join the early access list",
+      label: "Talk to us about your portfolio",
       href: "#waitlist",
     },
 
@@ -30,59 +43,68 @@ export const en = {
   },
 
   problem: {
-    title: "Without precise analysis, underperformance can easily go unnoticed",
+    title: "The contract is met, and the production is still missing",
     items: [
       {
+        term: "An inverter clipping or drifting",
+        text: "It stays connected and sends no fault signal. It simply produces less than its neighbours, sometimes for months.",
+      },
+      {
+        term: "A disconnected string",
+        text: "Part of the array stops while the rest keeps producing. At plant level, the gap blends into a less sunny day.",
+      },
+      {
+        term: "Shading",
+        text: "Vegetation growing, a neighbouring structure: the shadow spreads slowly and follows the seasons, without ever interrupting anything.",
+      },
+      {
         term: "Soiling",
-        text: "Production drops slowly, never drawing attention, until it causes more severe damage to the panels.",
-      },
-      {
-        term: "Silent anomalies",
-        text: "Since your production naturally fluctuates with the weather, a new anomaly goes completely unnoticed, blending in with cloudy days.",
-      },
-      {
-        term: "Fatigued inverter",
-        text: "It doesn't necessarily fail or send a fault signal. It remains connected, but simply produces less than its neighbours.",
+        text: "Production falls slowly across the whole array. It is the best-known loss, and often the least profitable to treat on its own: a cleaning recovers only part of it.",
       },
     ],
     closing:
-      "Invisible, these losses accumulate and continuously penalise your profitability.",
+      "None of these gaps stops a piece of equipment: availability stays green, no alarm goes off, and the intervention still arrives on the date set by the contract.",
   },
 
   anticipation: {
     eyebrow: "Vision",
-    title: "Your data, deeply analysed, to optimise your production",
-    lead: "Our vision: an in-depth analysis of your production data, combined with weather modelling, to turn uncertainty into a resilience strategy.",
+    title: "Which intervention, at what moment, for how many euros",
+    lead: "Our vision: compare actual production with expected production, weather included, and put a euro figure on every gap — so as to work out the moment when an intervention earns more than it costs.",
     items: [
       {
-        term: "Detect and understand silent losses",
-        text: "Rather than facing unexplained drops in production, our approach aims to analyse in depth the history and data flows of your portfolio. By cross-referencing performance variables, the goal is to surface invisible patterns to understand the exact origin of malfunctions and anticipate potential issues before they impact profitability.",
+        term: "The decision rule",
+        text: "The loss accumulates for as long as you wait; the intervention, for its part, has a fixed cost. Our goal is to track both curves plant by plant: the point where they cross gives the date beyond which waiting costs more than acting.",
       },
       {
-        term: "Anticipate climate impact",
-        text: "Faced with climate disruption, asset managers need visibility. Our approach aims to integrate weather models to simulate and anticipate the impact of hazards on your installations — moving from reactive, blind maintenance to proactive planning of interventions.",
+        term: "Plugging in, replacing nothing",
+        text: "Our approach aims to read your existing supervision data, read-only and with no data project. Measuring the gap adds to what your teams already monitor — it does not take its place.",
+      },
+      {
+        term: "The schedule stays with you",
+        text: "ClariVolt does not manage interventions: they stay in your CMMS. Our goal is to say what to handle first, based on the euros at stake; the decision and the schedule remain yours.",
       },
     ],
-    closing: "This is the direction in which we're building ClariVolt.",
+    closing:
+      "Doing nothing is a decision too — you still need to know what it costs.",
   },
 
   finalCta: {
-    title: "Know what your portfolio is quietly losing",
-    lead: "We contact the first registrants to understand their portfolio.",
-    cta: { label: "Join the early access list" },
+    title: "Know when your interventions are worth what they cost",
+    lead: "We are at the prototype stage, tested on exports reconstructed from real data. Next step: two diagnostics on data from plants in operation. We contact the first registrants to understand their portfolio.",
+    cta: { label: "Talk to us about your portfolio" },
   },
 
   thanks: {
-    title: "You are on the list",
-    lead: "Thank you. We will let you know when ClariVolt opens.",
-    next: "We contact the first registrants to understand their portfolio: if yours is a fit, you will receive an invitation to talk.",
+    title: "Your request has been recorded",
+    lead: "Thank you. We will come back to you to arrange a conversation.",
+    next: "We contact the first registrants to understand their portfolio: if yours is a fit, you will receive an invitation to talk about it.",
     back: "Back to home",
   },
 
   form: {
     emailLabel: "Your work email address",
     emailPlaceholder: "first.last@example.com",
-    submit: "Join the list",
+    submit: "Request a conversation",
     submitting: "Sending…",
     consent:
       "I agree to be contacted about ClariVolt. My address will not be sold or shared.",
@@ -110,7 +132,7 @@ export const en = {
     title: "Privacy policy",
     updated: "Last updated: 20 September 2026",
     intro:
-      "This page describes how the data submitted through the ClariVolt early-access sign-up form is processed.",
+      "This page describes how the data submitted through the ClariVolt contact form is processed.",
     sections: [
       {
         heading: "Data controller",
@@ -159,8 +181,8 @@ export const en = {
   },
 
   meta: {
-    title: "ClariVolt — The performance of your solar portfolio",
+    title: "ClariVolt — When to act on your solar plants",
     description:
-      "Silent losses — soiling, drift, underperforming inverters — never trigger an alarm. ClariVolt makes them visible.",
+      "Production losses escape the availability rate, and the intervention follows the contract calendar. ClariVolt aims to calculate the moment when it earns more than it costs.",
   },
 } satisfies Dictionary;

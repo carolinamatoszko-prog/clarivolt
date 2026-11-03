@@ -3,15 +3,19 @@ import { Bullet, Eyebrow } from "@/components/ui";
 import type { Dictionary } from "@/content/dictionaries";
 
 /**
- * Chaque entrée est un levier d'anticipation : ce qu'on peut faire
- * avant que la perte ne s'installe.
+ * Les trois entrées décrivent la méthode : la règle de décision, le
+ * branchement sur la supervision existante, et la frontière avec la
+ * GMAO du client.
+ *
+ * Le bloc garde le nom `anticipation` dans le dictionnaire alors
+ * qu'il ne parle plus d'anticipation météo. Le renommer toucherait
+ * page.tsx et les deux dictionnaires sans rien changer à l'écran :
+ * le gain ne vaut pas la surface touchée.
  *
  * La forme précédente — événement météo → flèche → action — a été
- * retirée avec le nouveau texte : les entrées ne sont plus des
- * causes mais des actions, et une flèche d'une action vers sa
- * propre explication était un contresens. La carte reprend donc la
- * structure du bloc Problème (terme + paragraphe), ce qui supprime
- * aussi la colonne gauche presque vide face à des textes longs.
+ * retirée : la carte reprend la structure du bloc Problème (terme +
+ * paragraphe), ce qui supprime aussi la colonne gauche presque vide
+ * face à des textes longs.
  */
 export function Anticipation({ dict }: { dict: Dictionary["anticipation"] }) {
   return (
